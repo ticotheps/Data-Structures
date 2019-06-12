@@ -17,7 +17,7 @@
         #  1) Compare the element against the current node's value.
         #  2) Based on the result of the comparison, go LEFT or RIGHT
         
-    #   For instance: 
+    #   Example 1: 
         #  Insert: 15, 11, 13, 13
     #
     #                     (15)
@@ -27,3 +27,13 @@
     #                    (13)
     #                      \      <== arrows go to the RIGHT b/c 13 = 13
     #                      (13)
+    
+    #   Example 2: 
+    #
+    #                     (21)
+    #                    /    \         
+    #                (18)      (25)
+    #               /    \     /   \  
+    #            (14)   (19) (23)  (28)
+    #               \          \       
+    #               (15)       (24)
