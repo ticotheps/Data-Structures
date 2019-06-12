@@ -58,37 +58,37 @@
         #   Items are scattered all over memory.
         #   Requires more memory to store items because of the arrows we need.
         
-#   ***WINNER (for building a queue)*** => Linked Lists
+#   ***WINNER (for building a queue)*** => Linked List
 
 #  Creates a Node class to store individual entries for the queue
 class Node:
     def __init__(self, value=None, next_node=None):
        self.value = value
        self.next_node = next_node
- 
+       
 class Queue:
     def __init__(self):
         self.head = None
-        self.tail = None
+        self.tail = self.head
         self.size = 0
- 
+    
     def enqueue(self, item):
-        new_node = Node(item)
-        if self.tail is None:
-            self.head = new_node
-            self.tail = self.head
+        new_node = Node(item)  #  <== 'new_node' is new instantiation of the 'Node' class
+        if self.tail is None:  #  <== checks to see if our linked list is empty; self.head + self.tail both point to the same thing: None
+            self.head = new_node  #  <== since no 'head' node exists, this sets our head to the 'new_node'
+            self.tail = self.head  #  <== points our tail to the 'new_node' as well
         else:
-            self.tail.next_node = new_node
-            self.tail = self.tail.next_node
+            self.tail.next_node = new_node  #  <== since we have a 'head' node, this points the CURRENT tail's next pointer to the new_node
+            self.tail = self.tail.next_node  #  <== this sets the new_node as the tail
         self.size += 1
  
     def dequeue(self):
-        if self.head is None:
+        if self.head is None:  #  <== checks to see if our linked list is empty; self.head + self.tail both point to the same thing: None
             return None
         else:
             to_return = self.head.value
-            self.head = self.head.next_node
-            self.size -= 1
+            self.head = self.head.next_node  #  <== sets the head to the node that the CURRENT head's next pointer is pointing to
+            self.size -= 1  #  <== decreases the size of the linked list by 1 to indicate successful removal of the node
             return to_return 
           
     def len(self):

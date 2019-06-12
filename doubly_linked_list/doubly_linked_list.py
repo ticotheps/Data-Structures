@@ -31,11 +31,33 @@ class ListNode:
           self.prev.next = self.next
         if self.next:
           self.next.prev = self.prev
+          
+    #  Returns next ListNode
+    def get_next(self):
+        return self.next
+
+    #  Sets next ListNode to 'node' argument
+    def set_next(self, next):
+        self.next = next
+        
+    #  Returns next ListNode
+    def get_prev(self):
+        return self.prev
+
+    #  Sets next ListNode to 'node' argument
+    def set_prev(self, prev):
+        self.prev = prev
+ 
+    #  Sets next ListNode to 'node' argument
+    def get_value(self, prev):
+        return self.value      
+        
 
 """Our doubly-linked list class. It holds references to
 the list's head and tail nodes."""
 class DoublyLinkedList:
-    def __init__(self, node=None):
+    def __init__(self, value, node=None):
+        self.value = value
         self.head = node
         self.tail = node
         self.length = 1 if node is not None else 0
@@ -44,33 +66,47 @@ class DoublyLinkedList:
         return self.length
 
     def add_to_head(self, value):
+        if self.head is None:
+            new_node = ListNode(value)
+            self.head = new_node
+            return
         new_node = ListNode(value)
         new_node.next = self.head
-        new_node.prev = None
-        if self.head is not None:
-            self.head.prev = new_node
+        self.head.prev = new_node
         self.head = new_node
         self.length += 1
+        return self
+    
+    def printList(self):
+        array = []
+        currentNode = self.head
+        while currentNode is not None:
+            array.append(currentNode.value)
+            currentNode = currentNode.next
+        print(array)
 
     def remove_from_head(self):
         pass
 
     def add_to_tail(self, value):
-        new_node = ListNode(value)
-        last = self.head
-        new_node.next = None
-        if self.head is None:
-            new_node.prev = None
-            self.head = new_node
+        if not self.tail:  #  <== if a tail (or head) doesn't exist...
+            new_node = ListNode(value)  #  <== creates a new instance of a ListNode!
+            self.tail = new_node  #  <== sets the new_node as the NEW current tail
             return
-        while (last.next is not None):
-            last = last.next
-        last.next = new_node
-        new_node.prev = last
+        while self.tail.next is False:  #  <== if the current tail's next-pointer is pointing to 'None', which is 'False'...
+            new_node = ListNode(value)  #  <== creates a new instance of a ListNode! 
+            self.tail.next = new_node  #  <== sets the tail's current 'next-pointer' to reference the new_node
+            new_node.prev = self.tail  #  <== sets the new_node's 'prev-pointer' to reference the old tail
+        self.length += 1  #  <== increases the length of the doubly linked list by 1
         
-
     def remove_from_tail(self):
-        pass
+        if self.tail is None:
+            return "This list has no item to delete"
+        if self.tail.next is None:
+            self.tail = None
+            return
+        while self.tail.next is not None:
+            self.tail.next.prev.next = None
 
     def move_to_front(self, node):
         pass
@@ -79,7 +115,26 @@ class DoublyLinkedList:
         pass
 
     def delete(self, node):
-        pass
+        counter = 0
+        targetNode = node.value
+        currentNode = self.head.value
+        while currentNode is not targetNode:
+            currentNode = currentNode.next
+            counter += 1
+        node_before_delete = currentNode
+        unwantedNode = node_before_delete.next
+        node_before_delete.next = unwantedNode.next
+        self.length -= 1
       
-    def get_max(self):
-        pass
+    def get_max(self, arr):
+        valuesArr = []
+        for i in range(len(arr)):
+            if self.tail.next is not None:
+                valuesArr.append(arr[i])
+        return max(valuesArr)
+    
+myDLL = DoublyLinkedList(2)
+myDLL.add_to_head(4)
+myDLL.add_to_head(7)
+myDLL.printList()
+myDLL.delete(1)
