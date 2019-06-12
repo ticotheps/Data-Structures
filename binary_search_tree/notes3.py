@@ -77,11 +77,3 @@ class BinarySearchTree:
     def for_each(self, cb):
         pass
       
-#---------------------HEAPS------------------------
-    #  Objective: optimal access to priority elements
-        #  i.e. - max, min, longest string, etc.
-    #  Used for: sorting, logging
-    #  Application: We want to be able to access the priority element in
-    #               O(1) run time.
-    
-    #  PSEUDOCODE
