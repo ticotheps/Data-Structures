@@ -36,4 +36,9 @@ class BinarySearchTree:
         return current.value
 
     def for_each(self, cb):
-      pass
+        pass
+        # if node is None:
+        #     return
+        # self.for_each(self.left.value, cb)
+        # cb(node.value)
+        # self.for_each(self.right.value, cb)
