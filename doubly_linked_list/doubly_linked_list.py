@@ -57,6 +57,7 @@ class ListNode:
 the list's head and tail nodes."""
 class DoublyLinkedList:
     def __init__(self, value, node=None):
+        self.value = value
         self.head = node
         self.tail = node
         self.length = 1 if node is not None else 0
@@ -74,6 +75,15 @@ class DoublyLinkedList:
         self.head.prev = new_node
         self.head = new_node
         self.length += 1
+        return self
+    
+    def printList(self):
+        array = []
+        currentNode = self.head
+        while currentNode is not None:
+            array.append(currentNode.value)
+            currentNode = currentNode.next
+        print(array)
 
     def remove_from_head(self):
         pass
@@ -113,3 +123,8 @@ class DoublyLinkedList:
             if self.tail.next is not None:
                 valuesArr.append(arr[i])
         return max(valuesArr)
+    
+myDLL = DoublyLinkedList(2)
+myDLL.add_to_head(4)
+myDLL.add_to_head(7)
+myDLL.printList()
