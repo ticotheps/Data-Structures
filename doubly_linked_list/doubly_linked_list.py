@@ -56,7 +56,7 @@ class ListNode:
 """Our doubly-linked list class. It holds references to
 the list's head and tail nodes."""
 class DoublyLinkedList:
-    def __init__(self, node=None):
+    def __init__(self, value, node=None):
         self.head = node
         self.tail = node
         self.length = 1 if node is not None else 0
@@ -86,7 +86,7 @@ class DoublyLinkedList:
         while self.tail.next is False:  #  <== if the current tail's next-pointer is pointing to 'None', which is 'False'...
             new_node = ListNode(value)  #  <== creates a new instance of a ListNode! 
             self.tail.next = new_node  #  <== sets the tail's current 'next-pointer' to reference the new_node
-            new_node.prev = self.tail.next  #  <== sets the new_node's 'prev-pointer' to reference the old tail
+            new_node.prev = self.tail  #  <== sets the new_node's 'prev-pointer' to reference the old tail
         self.length += 1  #  <== increases the length of the doubly linked list by 1
         
     def remove_from_tail(self):
@@ -107,5 +107,9 @@ class DoublyLinkedList:
     def delete(self, node):
         pass
       
-    def get_max(self):
-        return max(DoublyLinkedList)
+    def get_max(self, arr):
+        valuesArr = []
+        for i in range(len(arr)):
+            if self.tail.next is not None:
+                valuesArr.append(arr[i])
+        return max(valuesArr)
