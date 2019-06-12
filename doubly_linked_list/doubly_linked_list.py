@@ -114,15 +114,16 @@ class DoublyLinkedList:
     def move_to_end(self, node):
         pass
 
-    def delete(self, index):
+    def delete(self, node):
         counter = 0
-        currentNode = self.head
-        while counter is not index:
+        targetNode = node.value
+        currentNode = self.head.value
+        while currentNode is not targetNode:
             currentNode = currentNode.next
             counter += 1
-        leader = currentNode
-        unwantedNode = leader.next
-        leader.next = unwantedNode.next
+        node_before_delete = currentNode
+        unwantedNode = node_before_delete.next
+        node_before_delete.next = unwantedNode.next
         self.length -= 1
       
     def get_max(self, arr):
