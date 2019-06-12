@@ -108,4 +108,4 @@ class DoublyLinkedList:
         pass
       
     def get_max(self):
-        pass
+        return max(DoublyLinkedList)
