@@ -103,16 +103,16 @@ class DoublyLinkedList:
         # return temp
 
     def add_to_tail(self, value):
-        if self.tail is None:  #  <== if a tail doesn't exist...
+        if self.head is None:  #  <== if a head doesn't exist...
             new_node = ListNode(value)  #  <== creates a new instance of a ListNode!
-            self.tail = new_node  #  <== sets the new_node as the NEW current tail
+            self.head = new_node  #  <== sets the new_node as the NEW current tail
             return
-        n = self.tail
-        while n.next is not None:  #  <== if the current tail's next-pointer is pointing to 'None', which is 'False'...
-            n = n.next  #  <== reaches the 2nd to last node of the list and sets the that node's tail's next-pointer to point to the the last node.
+        currentNode = self.head
+        while currentNode.next is not None:  #  <== if the current node's next-pointer is pointing to 'None', which is 'False'...
+            currentNode = currentNode.next  #  <== reaches the 2nd to last node of the list and sets the that node's tail's next-pointer to point to the the last node.
         new_node = ListNode(value)  #  <== creates a new instance of a ListNode! 
-        n.next = new_node  #  <== sets the tails's current 'next-pointer' to reference the new_node
-        new_node.prev = n  #  <== sets the new_node's 'prev-pointer' to reference the old tail
+        currentNode.next = new_node  #  <== sets the tails's current 'next-pointer' to reference the new_node
+        new_node.prev = currentNode  #  <== sets the new_node's 'prev-pointer' to reference the old tail
         self.length += 1  #  <== increases the length of the doubly linked list by 1
         
     def remove_from_tail(self):
@@ -169,6 +169,7 @@ class DoublyLinkedList:
 myDLL = DoublyLinkedList(2)
 myDLL.add_to_head(4)
 myDLL.add_to_head(7)
+myDLL.add_to_tail(5)
 myDLL.printList()
 myDLL.delete(7)
 myDLL.printList()
