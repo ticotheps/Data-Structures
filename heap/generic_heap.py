@@ -13,7 +13,16 @@ class Heap:
         self._bubble_up(self.last_index)
 
     def delete(self):
-        pass
+        if self.last_index == -1:
+            return "Unable to delete from an empty heap"
+        
+        min_value = self.storage[0]
+        
+        self.storage[0] = self.storage[self.last_index]
+        self.last_index -= 1
+        self._sift_down(0)
+        
+        return min_value
 
     def get_priority(self):
         pass
