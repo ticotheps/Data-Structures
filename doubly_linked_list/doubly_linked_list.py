@@ -54,32 +54,33 @@ class ListNode:
         
 
 """Our doubly-linked list class. It holds references to
-the list's head and tail nodes."""
+the list's start_node and start_node nodes."""
 class DoublyLinkedList:
     def __init__(self, value, node=None):
         self.value = value
-        self.head = node
-        self.tail = node
+        self.start_node = node
+        # self.start_node = node
+        # self.start_node = node
         self.length = 1 if node is not None else 0
 
     def __len__(self):
         return self.length
 
     def add_to_head(self, value):
-        if self.head is None:
+        if self.start_node is None:
             new_node = ListNode(value)
-            self.head = new_node
+            self.start_node = new_node
             return
         new_node = ListNode(value)
-        new_node.next = self.head
-        self.head.prev = new_node
-        self.head = new_node
+        new_node.next = self.start_node
+        self.start_node.prev = new_node
+        self.start_node = new_node
         self.length += 1
         return self
     
     def printList(self):
         array = []
-        currentNode = self.head
+        currentNode = self.start_node
         while currentNode is not None:
             array.append(currentNode.value)
             currentNode = currentNode.next
@@ -88,41 +89,45 @@ class DoublyLinkedList:
     def remove_from_head(self):
         pass
         #  Checks for empty list
-        #  Sets head to "temp"
-        #  Sets current head to head.next
+        #  Sets start_node to "temp"
+        #  Sets current start_node to start_node.next
         #  Deletes temp
-        #  If head is not NONE, head.prev = None
-        # if not self.head:
+        #  If start_node is not NONE, start_node.prev = None
+        # if not self.start_node:
         #     return False
         # else:
-        #     temp = self.head
-        #     self.head = self.head.next
+        #     temp = self.start_node
+        #     self.start_node = self.start_node.next
         #     del temp
-        #     if self.head is not None:
-        #         self.head.prev = None
+        #     if self.start_node is not None:
+        #         self.start_node.prev = None
         # return temp
 
     def add_to_tail(self, value):
-        if self.head is None:  #  <== if a head doesn't exist...
+        if self.start_node is None:  #  <== if a start_node doesn't exist...
             new_node = ListNode(value)  #  <== creates a new instance of a ListNode!
-            self.head = new_node  #  <== sets the new_node as the NEW current tail
+            self.start_node = new_node  #  <== sets the new_node as the NEW current start_node
             return
-        currentNode = self.head
+        currentNode = self.start_node
         while currentNode.next is not None:  #  <== if the current node's next-pointer is pointing to 'None', which is 'False'...
-            currentNode = currentNode.next  #  <== reaches the 2nd to last node of the list and sets the that node's tail's next-pointer to point to the the last node.
+            currentNode = currentNode.next  #  <== reaches the 2nd to last node of the list and sets the that node's start_node's next-pointer to point to the the last node.
         new_node = ListNode(value)  #  <== creates a new instance of a ListNode! 
         currentNode.next = new_node  #  <== sets the tails's current 'next-pointer' to reference the new_node
-        new_node.prev = currentNode  #  <== sets the new_node's 'prev-pointer' to reference the old tail
+        new_node.prev = currentNode  #  <== sets the new_node's 'prev-pointer' to reference the old start_node
         self.length += 1  #  <== increases the length of the doubly linked list by 1
         
     def remove_from_tail(self):
-        if self.tail is None:
-            return "This list has no item to delete"
-        if self.tail.next is None:
-            self.tail = None
+        if self.start_node is None:
+            print("This list has no item to delete")
+            return 
+        if self.start_node.next is None:
+            self.start_node = None
             return
-        while self.tail.next is not None:
-            self.tail.next.prev.next = None
+        n = self.start_node
+        while n.next is not None:
+            n = n.next
+        n.prev.next = None
+        self.length -= 1
 
     def move_to_front(self, node):
         pass
@@ -132,20 +137,20 @@ class DoublyLinkedList:
 
     def delete(self, node):
         # pass
-        if self.head is None:
+        if self.start_node is None:
             print("There is no element to delete.")
             return
-        if self.head.next is None:
-            if self.head.value == node:
-                self.head = None
+        if self.start_node.next is None:
+            if self.start_node.value == node:
+                self.start_node = None
             else:
                 print("Node not found")
             return
-        if self.head.value == node:
-            self.head = self.head.next
-            self.head.prev = None
+        if self.start_node.value == node:
+            self.start_node = self.start_node.next
+            self.start_node.prev = None
             return
-        n = self.head
+        n = self.start_node
         while n.next is not None:
             if n.value == node:
                 break
@@ -162,7 +167,7 @@ class DoublyLinkedList:
     def get_max(self, arr):
         valuesArr = []
         for i in range(len(arr)):
-            if self.tail.next is not None:
+            if self.start_node.next is not None:
                 valuesArr.append(arr[i])
         return max(valuesArr)
     
