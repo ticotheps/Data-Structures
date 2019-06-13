@@ -87,16 +87,32 @@ class DoublyLinkedList:
 
     def remove_from_head(self):
         pass
+        #  Checks for empty list
+        #  Sets head to "temp"
+        #  Sets current head to head.next
+        #  Deletes temp
+        #  If head is not NONE, head.prev = None
+        # if not self.head:
+        #     return False
+        # else:
+        #     temp = self.head
+        #     self.head = self.head.next
+        #     del temp
+        #     if self.head is not None:
+        #         self.head.prev = None
+        # return temp
 
     def add_to_tail(self, value):
-        if not self.tail:  #  <== if a tail (or head) doesn't exist...
+        if self.tail is None:  #  <== if a tail doesn't exist...
             new_node = ListNode(value)  #  <== creates a new instance of a ListNode!
             self.tail = new_node  #  <== sets the new_node as the NEW current tail
             return
-        while self.tail.next is False:  #  <== if the current tail's next-pointer is pointing to 'None', which is 'False'...
-            new_node = ListNode(value)  #  <== creates a new instance of a ListNode! 
-            self.tail.next = new_node  #  <== sets the tail's current 'next-pointer' to reference the new_node
-            new_node.prev = self.tail  #  <== sets the new_node's 'prev-pointer' to reference the old tail
+        n = self.tail
+        while n.next is not None:  #  <== if the current tail's next-pointer is pointing to 'None', which is 'False'...
+            n = n.next  #  <== reaches the 2nd to last node of the list and sets the that node's tail's next-pointer to point to the the last node.
+        new_node = ListNode(value)  #  <== creates a new instance of a ListNode! 
+        n.next = new_node  #  <== sets the tails's current 'next-pointer' to reference the new_node
+        new_node.prev = n  #  <== sets the new_node's 'prev-pointer' to reference the old tail
         self.length += 1  #  <== increases the length of the doubly linked list by 1
         
     def remove_from_tail(self):
@@ -115,16 +131,33 @@ class DoublyLinkedList:
         pass
 
     def delete(self, node):
-        counter = 0
-        targetNode = node.value
-        currentNode = self.head.value
-        while currentNode is not targetNode:
-            currentNode = currentNode.next
-            counter += 1
-        node_before_delete = currentNode
-        unwantedNode = node_before_delete.next
-        node_before_delete.next = unwantedNode.next
-        self.length -= 1
+        # pass
+        if self.head is None:
+            print("There is no element to delete.")
+            return
+        if self.head.next is None:
+            if self.head.value == node:
+                self.head = None
+            else:
+                print("Node not found")
+            return
+        if self.head.value == node:
+            self.head = self.head.next
+            self.head.prev = None
+            return
+        n = self.head
+        while n.next is not None:
+            if n.value == node:
+                break
+            n = n.next
+        if n.next is not None:
+            n.prev.next = n.next
+            n.next.pref = n.prev
+        else:
+            if n.value == node:
+                n.prev.next = None
+            else:
+                print("Node not found")
       
     def get_max(self, arr):
         valuesArr = []
@@ -137,4 +170,5 @@ myDLL = DoublyLinkedList(2)
 myDLL.add_to_head(4)
 myDLL.add_to_head(7)
 myDLL.printList()
-myDLL.delete(1)
+myDLL.delete(7)
+myDLL.printList()
