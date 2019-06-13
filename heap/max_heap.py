@@ -8,7 +8,7 @@ class Heap:
   def delete(self):
     pass
 
-  def get_max(self):
+  def get_priority(self):
     pass
 
   def get_size(self):
