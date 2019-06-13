@@ -24,7 +24,7 @@ class Heap:
         
         return min_value
 
-    def get_priority(self, index):
+    def get_max(self, index):
         if index == 0:
             return None, None
           
@@ -37,7 +37,7 @@ class Heap:
 
     def _bubble_up(self, index):
         while self.comparator > 0:
-            self.comparator, self.storage[self.comparator] = self.get_priority(index)
+            self.comparator, self.storage[self.comparator] = self.get_max(index)
             
             if self.storage[self.comparator] <= self.storage[index]:
                 break
