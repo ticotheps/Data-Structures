@@ -3,6 +3,7 @@ class Heap:
         self.storage = []
         self.last_index = -1
         self.comparator = comparator
+        self.length = len(self.storage)
 
     def insert(self, value):
         self.last_index += 1
@@ -31,6 +32,18 @@ class Heap:
         self.comparator = (index - 1) / 2
         
         return self.comparator, self.storage[self.comparator]
+      	# if self.length >= 1:
+        #     min_value = self.storage[1]         
+        #     self.length -= 1
+        #     self.storage[1], self.storage[self.last_index] = self.storage[self.last_index], self.storage[1]  #swap root with last_index element
+        #     self.last_index -= 1               #decrement length
+        #     self.storage.pop(-1)          #pop the root that was moved to the last_index element
+        #     if self.length>1:          #coz first item is None
+        #         if self.length<=2:
+        #             self.storage[1:]=sorted(self.storage[1:]) #use reverse=True for max-heap
+        #         else:
+        #             self._sift_down(index)
+        #     return min_value
 
     def get_size(self):
         return self.last_index + 1
