@@ -1,5 +1,5 @@
 class Heap:
-    def __init__(self, comparator=None):
+    def __init__(self, comparator=0):
         self.storage = []
         self.last_index = -1
         self.comparator = comparator
