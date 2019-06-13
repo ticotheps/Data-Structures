@@ -28,7 +28,7 @@ class Heap:
         if index == 0:
             return None, None
           
-        self.comparator = (index -1) // 2
+        self.comparator = (index - 1) / 2
         
         return self.comparator, self.storage[self.comparator]
 
