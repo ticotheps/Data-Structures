@@ -24,14 +24,27 @@ class Heap:
         
         return min_value
 
-    def get_priority(self):
-        pass
+    def get_priority(self, index):
+        if self.comparator == 0:
+            return None, None
+          
+        comparator_index = (self.comparator -1) // 2
+        
+        return comparator_index, self.storage[comparator_index]
 
     def get_size(self):
         pass
 
     def _bubble_up(self, index):
-        pass
+        while self.comparator > 0:
+            self.comparator, self.storage[self.comparator] = self.get_priority(index)
+            
+            if self.storage[self.comparator] <= self.storage[index]:
+                break
+              
+            self.storage[self.comparator], self.storage[index] = self.storage[index], self.storage[self.comparator]
+            
+            index = self.comparator
 
     def _sift_down(self, index):
         pass
