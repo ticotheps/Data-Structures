@@ -15,6 +15,30 @@
         #  ***TRADE-OFF: Slower insertion
     #   First element in the array = the root element
     
+    #   h = height of binary search tree
+    #   # of nodes = 2^h - 1
+    #   log nodes = nodes
+    
+    #   Balanced vs Unbalanced BSTs
+    #   Balanced BSTs
+    #       -lookup: O(log n)
+    #       -insert: O(log n)
+    #       -delete: O(log n)
+    
+    #   Unbalanced BSTs
+    #       -lookup: O(n)
+    #       -insert: O(n)
+    #       -delete: O(n)
+    
+    #   BST PROS:
+    #       -Better than O(n)
+    #       -Ordered
+    #       -Flexible (b/c we can store a node anywhere in memory)
+    
+    #   BST CONS:
+    #       -No O(1) operations (b/c traversals of the tree are required for inserting/deleting)
+    
+    
     #   STEPS FOR CREATING BINARY SEARCH TREE DATA STRUCTURE:
         #  1) Compare the element against the current node's value.
         #  2) Based on the result of the comparison, go LEFT or RIGHT
